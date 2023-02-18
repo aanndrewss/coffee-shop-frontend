@@ -22,7 +22,7 @@ Install packages:
       npm i
 ```
 
-Launch:
+Running the app:
 
 ```bash
      npm run start
