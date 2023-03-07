@@ -1,5 +1,6 @@
-import Home from '@/app/screens/home/Home'
 import { NextPage } from 'next'
+
+import Home from '@/screens/home/Home'
 
 const HomePage: NextPage = () => {
 	return <Home />
