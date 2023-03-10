@@ -5,8 +5,8 @@ import { IAuthResponse, IEmailPassword } from '@/store/user/user.interface'
 
 import { getContentType } from '@/api/api.helper'
 
-import { AUTH, Tokens } from './auth.constants'
-import { authRequest, saveToStorage } from './auth.helper'
+import { AUTH, Tokens } from './constants/auth.constants'
+import { authRequest, saveToStorage } from './helpers/auth.helper'
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IEmailPassword) {

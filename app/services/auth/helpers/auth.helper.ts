@@ -8,7 +8,7 @@ import {
 
 import { instance } from '@/api/api.interceptor'
 
-import { AUTH, Tokens } from './auth.constants'
+import { AUTH, Tokens } from '../constants/auth.constants'
 
 export const getAccessToken = async () => {
 	const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
