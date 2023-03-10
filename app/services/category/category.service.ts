@@ -10,18 +10,21 @@ export const CategoryService = {
 			method: 'GET'
 		})
 	},
+
 	async getById(id: string) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,
 			method: 'GET'
 		})
 	},
+
 	async getBySlug(slug: string) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/by-slug/${slug}`,
 			method: 'GET'
 		})
 	},
+
 	async create(name: string) {
 		return instance<ICategory>({
 			url: CATEGORIES,
@@ -29,6 +32,7 @@ export const CategoryService = {
 			data: { name }
 		})
 	},
+
 	async update(id: string, name: string) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,
@@ -36,6 +40,7 @@ export const CategoryService = {
 			data: { name }
 		})
 	},
+
 	async delete(id: string) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,

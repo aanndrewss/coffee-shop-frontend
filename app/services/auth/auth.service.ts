@@ -16,6 +16,7 @@ export const AuthService = {
 
 		return response.data
 	},
+	
 	async getNewTokens() {
 		const refreshToken = Cookies.get(Tokens.REFRESH_TOKEN)
 
