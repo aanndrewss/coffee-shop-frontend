@@ -3,9 +3,10 @@ import Cookies from 'js-cookie'
 
 import { IAuthResponse, IEmailPassword } from '@/store/user/user.interface'
 
-import { authRequest, getContentType } from '@/api/api.helper'
+import { getContentType } from '@/api/api.helper'
 
-import { Tokens, saveToStorage } from './auth.helper'
+import { AUTH, Tokens } from './auth.constants'
+import { authRequest, saveToStorage } from './auth.helper'
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IEmailPassword) {
@@ -19,7 +20,7 @@ export const AuthService = {
 		const refreshToken = Cookies.get(Tokens.REFRESH_TOKEN)
 
 		const response = await axios.post<string, { data: IAuthResponse }>(
-			process.env.SERVER_URL + '/auth/login/access-token',
+			process.env.SERVER_URL + `${AUTH}/login/access-token`,
 			{ refreshToken },
 			{ headers: getContentType() }
 		)

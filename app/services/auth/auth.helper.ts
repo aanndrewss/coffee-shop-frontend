@@ -1,6 +1,14 @@
 import Cookies from 'js-cookie'
 
-import { IAuthResponse, ITokens } from '@/store/user/user.interface'
+import {
+	IAuthResponse,
+	IEmailPassword,
+	ITokens
+} from '@/store/user/user.interface'
+
+import { instance } from '@/api/api.interceptor'
+
+import { AUTH, Tokens } from './auth.constants'
 
 export const getAccessToken = async () => {
 	const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
@@ -27,7 +35,10 @@ export const saveToStorage = (data: IAuthResponse) => {
 	localStorage.setItem('user', JSON.stringify(data.user))
 }
 
-export enum Tokens {
-	REFRESH_TOKEN = 'refreshToken',
-	ACCESS_TOKEN = 'accessToken'
+export const authRequest = (type: string, data: IEmailPassword) => {
+	return instance<IAuthResponse>({
+		url: `${AUTH}/${type}`,
+		method: 'POST',
+		data
+	})
 }
