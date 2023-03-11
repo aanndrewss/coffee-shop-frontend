@@ -11,13 +11,17 @@ import {
 import persistStore from 'redux-persist/es/persistStore'
 import storage from 'redux-persist/es/storage'
 
+import { userSlice } from './user/user.slice'
+
 const persistConfig = {
 	key: 'coffee-shop',
 	storage,
 	whitelist: ['cart']
 }
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+	user: userSlice.reducer
+})
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

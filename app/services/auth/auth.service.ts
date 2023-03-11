@@ -16,7 +16,7 @@ export const AuthService = {
 
 		return response.data
 	},
-	
+
 	async getNewTokens() {
 		const refreshToken = Cookies.get(Tokens.REFRESH_TOKEN)
 
@@ -27,5 +27,7 @@ export const AuthService = {
 		)
 
 		if (response.data.accessToken) saveToStorage(response.data)
+
+		return response
 	}
 }
