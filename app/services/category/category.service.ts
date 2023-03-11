@@ -11,7 +11,7 @@ export const CategoryService = {
 		})
 	},
 
-	async getById(id: string) {
+	async getById(id: string | number) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,
 			method: 'GET'
@@ -33,7 +33,7 @@ export const CategoryService = {
 		})
 	},
 
-	async update(id: string, name: string) {
+	async update(id: string | number, name: string) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,
 			method: 'PUT',
@@ -41,7 +41,7 @@ export const CategoryService = {
 		})
 	},
 
-	async delete(id: string) {
+	async delete(id: string | number) {
 		return instance<ICategory>({
 			url: `${CATEGORIES}/${id}`,
 			method: 'DELETE'

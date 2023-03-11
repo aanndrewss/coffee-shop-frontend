@@ -3,4 +3,5 @@ export interface IUserData {
 	password?: string
 	name?: string
 	phone?: string
+	avatarPath?: string
 }
