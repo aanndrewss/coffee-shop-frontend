@@ -10,12 +10,17 @@ import { instance } from '@/api/api.interceptor'
 
 import { AUTH, Tokens } from '../constants/auth.constants'
 
-export const getAccessToken = async () => {
+export const getAccessToken = () => {
 	const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
 	return accessToken || null
 }
 
-export const getUserFromStorage = async () => {
+export const getRefreshToken = () => {
+	const refreshToken = Cookies.get(Tokens.REFRESH_TOKEN)
+	return refreshToken || null
+}
+
+export const getUserFromStorage = () => {
 	return JSON.parse(localStorage.getItem('user') || '{}')
 }
 

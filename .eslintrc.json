@@ -20,6 +20,15 @@
 			{
 				"allowSingleExtends": true
 			}
+		],
+		"@typescript-eslint/ban-types": [
+			"error",
+			{
+				"extendDefaults": true,
+				"types": {
+					"{}": false
+				}
+			}
 		]
 	},
 	"extends": [
