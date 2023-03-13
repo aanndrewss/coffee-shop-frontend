@@ -1,9 +1,100 @@
-import { FC } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { FC, Fragment, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { Meta } from '@/components/shared'
+import { Button, Input } from '@/components/shared'
 
-const Auth: FC = () => {
-	return <Meta title='Auth'>Auth</Meta>
+import { IEmailPassword } from '@/store/user/user.interface'
+
+import { useActions } from '@/hooks/useActions'
+import { useAuth } from '@/hooks/useAuth'
+
+import { AuthProps } from './Auth.props'
+
+const Auth: FC<AuthProps> = ({ isOpen, setIsOpen }) => {
+	const { isLoading } = useAuth()
+
+	const { login, register } = useActions()
+
+	const [type, setType] = useState<'login' | 'register'>('login')
+
+	const {
+		register: formRegister,
+		handleSubmit,
+		formState,
+		reset
+	} = useForm<IEmailPassword>({ mode: 'onChange' })
+
+	const onSubmit: SubmitHandler<IEmailPassword> = data => {
+		if (type === 'login') login(data)
+		else register(data)
+
+		reset()
+	}
+	return (
+		<>
+			<Transition appear show={isOpen} as={Fragment}>
+				<Dialog
+					as='div'
+					className='relative z-10'
+					onClose={() => setIsOpen(false)}
+				>
+					<Transition.Child
+						as={Fragment}
+						enter='ease-out duration-300'
+						enterFrom='opacity-0'
+						enterTo='opacity-100'
+						leave='ease-in duration-200'
+						leaveFrom='opacity-100'
+						leaveTo='opacity-0'
+					>
+						<div className='fixed inset-0 bg-black bg-opacity-25' />
+					</Transition.Child>
+
+					<div className='fixed inset-0 overflow-y-auto'>
+						<div className='flex min-h-full items-center justify-center p-4 text-center'>
+							<Transition.Child
+								as={Fragment}
+								enter='ease-out duration-300'
+								enterFrom='opacity-0 scale-95'
+								enterTo='opacity-100 scale-100'
+								leave='ease-in duration-200'
+								leaveFrom='opacity-100 scale-100'
+								leaveTo='opacity-0 scale-95'
+							>
+								<Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
+									<Dialog.Title
+										as='h3'
+										className='text-lg font-medium leading-6 text-gray-900 capitalize'
+									>
+										{type}
+									</Dialog.Title>
+									<form onSubmit={handleSubmit(onSubmit)}>
+										<Input
+											title='E-mail'
+											placeholder='E-mail'
+											{...formRegister('email', {
+												required: 'Email is required'
+											})}
+										/>
+										<Input
+											title='Password'
+											placeholder='Password'
+											type='password'
+											{...formRegister('password', {
+												required: 'Password is required'
+											})}
+										/>
+										<Button className='capitalize'>{type}</Button>
+									</form>
+								</Dialog.Panel>
+							</Transition.Child>
+						</div>
+					</div>
+				</Dialog>
+			</Transition>
+		</>
+	)
 }
 
 export default Auth

@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
+import { IconType } from 'react-icons'
 
 export interface InputProps
 	extends DetailedHTMLProps<
@@ -7,5 +8,6 @@ export interface InputProps
 		HTMLInputElement
 	> {
 	error?: FieldError
-	search?: boolean
+	Icon?: IconType
+	title?: string
 }

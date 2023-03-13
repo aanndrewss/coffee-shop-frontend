@@ -1,12 +1,8 @@
 .inputWrapper {
-	@apply relative flex flex-row items-center gap-2 rounded-layout bg-bgColor px-4 py-1.5;
-
-	.searchIcon {
-		@apply text-xl text-secondaryText;
-	}
+	@apply relative;
 
 	.input {
-		@apply font-semibold text-primaryText outline-none placeholder:text-secondaryText;
+		@apply bg-bgColor px-4 py-1.5 font-semibold text-primaryText outline-none placeholder:text-secondaryText;
 	}
 	.error {
 		@apply border-errorColor;
