@@ -10,6 +10,7 @@ import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 
 import { AuthProps } from './Auth.props'
+import { validEmail } from './validators/valid-email'
 
 const Auth: FC<AuthProps> = ({ isOpen, setIsOpen }) => {
 	const { isLoading } = useAuth()
@@ -21,7 +22,7 @@ const Auth: FC<AuthProps> = ({ isOpen, setIsOpen }) => {
 	const {
 		register: formRegister,
 		handleSubmit,
-		formState,
+		formState: { errors },
 		reset
 	} = useForm<IEmailPassword>({ mode: 'onChange' })
 
@@ -71,19 +72,25 @@ const Auth: FC<AuthProps> = ({ isOpen, setIsOpen }) => {
 									</Dialog.Title>
 									<form onSubmit={handleSubmit(onSubmit)}>
 										<Input
+											{...formRegister('email', {
+												required: 'Email is required',
+												pattern: {
+													value: validEmail,
+													message: 'Incorrect email!'
+												}
+											})}
 											title='E-mail'
 											placeholder='E-mail'
-											{...formRegister('email', {
-												required: 'Email is required'
-											})}
+											error={errors.email}
 										/>
 										<Input
-											title='Password'
-											placeholder='Password'
-											type='password'
 											{...formRegister('password', {
 												required: 'Password is required'
 											})}
+											title='Password'
+											placeholder='Password'
+											type='password'
+											error={errors.password}
 										/>
 										<Button className='capitalize'>{type}</Button>
 									</form>
