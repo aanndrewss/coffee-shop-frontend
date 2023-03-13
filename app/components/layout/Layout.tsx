@@ -1,17 +1,20 @@
 import { FC } from 'react'
-import Header from './Header/Header'
+
+import Meta from '@/ui/meta/Meta'
+
 import styles from './Layout.module.scss'
 import { ILayoutProps } from './Layout.props'
-import Meta from './Meta/Meta'
+import Header from './header/Header'
 
 const Layout: FC<ILayoutProps> = ({ children, title, description }) => {
 	return (
 		<>
-			<Meta title={title} description={description} />
-			<div className={styles.wrapper}>
-				<Header />
-				<main>{children}</main>
-			</div>
+			<Meta title={title} description={description}>
+				<div className={styles.wrapper}>
+					<Header />
+					<main>{children}</main>
+				</div>
+			</Meta>
 		</>
 	)
 }
