@@ -1,16 +1,15 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FC, PropsWithChildren } from 'react'
 
 import { titleMerge } from './Meta.helper'
 import { ISeo } from './Meta.props'
 
-const Meta: FC<PropsWithChildren<ISeo>> = ({
+export const Meta = ({
 	title,
 	description,
 	image,
 	children
-}) => {
+}: ISeo): JSX.Element => {
 	const { asPath } = useRouter()
 	const currentUrl = `${process.env.APP_URL}${asPath}`
 
@@ -40,5 +39,3 @@ const Meta: FC<PropsWithChildren<ISeo>> = ({
 		</>
 	)
 }
-
-export default Meta

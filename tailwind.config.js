@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const twColors = require('tailwindcss/colors')
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 const colors = {
 	transparent: twColors.transparent,
@@ -9,6 +10,7 @@ const colors = {
 	white: twColors.white,
 	primary: '#01AA13',
 	bgColor: '#FAF9FC',
+	errorColor: '#FD4646',
 	primaryText: '#3B3A3B',
 	secondaryText: '#A2A1A3'
 }
@@ -18,6 +20,13 @@ module.exports = {
 	theme: {
 		colors,
 		extend: {
+			fontFamily: {
+				urbanist: ['var(--urbanist-font)', ...fontFamily.sans]
+			},
+			borderRadius: {
+				layout: '15px'
+			},
+
 			keyframes: {
 				fade: {
 					from: { opacity: 0 },

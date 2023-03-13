@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import Meta from '@/ui/meta/Meta'
+import { Meta } from '../shared'
 
 import styles from './Layout.module.scss'
 import { ILayoutProps } from './Layout.props'

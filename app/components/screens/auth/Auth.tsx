@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
-import Meta from '@/ui/meta/Meta'
+import { Meta } from '@/components/shared'
 
 const Auth: FC = () => {
-	return <Meta title='Auth'></Meta>
+	return <Meta title='Auth'>Auth</Meta>
 }
 
 export default Auth

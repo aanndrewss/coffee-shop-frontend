@@ -1,3 +1,4 @@
+import { Urbanist } from '@next/font/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
@@ -18,6 +19,10 @@ const queryClient = new QueryClient({
 	}
 })
 
+const urbanist = Urbanist({
+	subsets: ['latin']
+})
+
 export default function App({
 	Component,
 	pageProps
@@ -27,6 +32,11 @@ export default function App({
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+						<style jsx global>{`
+							:root {
+								--urbanist-font: ${urbanist.style.fontFamily};
+							}
+						`}</style>
 						<Component {...pageProps} />
 					</AuthProvider>
 				</PersistGate>
